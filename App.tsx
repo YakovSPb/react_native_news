@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { gStyle } from './styles/style';
+import * as Font from 'expo-font'
+
+const fonts = () => Font.loadAsync({
+  'mt-bold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
+  'mt-light': require('./assets/fonts/Montserrat-VariableFont_wght.ttf')
+})
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+  const [font, setFont] = useState(false)
+
+  if(font) {
+    return (
+      <View style={gStyle.main}>
+        <Text style={gStyle.title}>Hello</Text>
+      </View>
+    )
+  } else {
+    return (
+      <AppLoading startAsync={fonts} onFinish={() => setFont(true)} onError={()=> {}}/>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 });
