@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Switch } from 'react-native';
 import AppLoading from 'expo-app-loading';
-import { gStyle } from './styles/style';
 import * as Font from 'expo-font'
+import {NativeRouter, Route} from 'react-router-native'
+
+import MainStack from './navigate';
+import FullInfo from './components/FullInfo';
 
 const fonts = () => Font.loadAsync({
   'mt-bold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
@@ -15,16 +18,18 @@ export default function App() {
 
   if(font) {
     return (
-      <View style={gStyle.main}>
-        <Text style={gStyle.title}>Hello</Text>
-      </View>
+      <MainStack/>
     )
   } else {
     return (
-      <AppLoading startAsync={fonts} onFinish={() => setFont(true)} onError={()=> {}}/>
+      <AppLoading
+       startAsync={fonts} 
+       onFinish={() => setFont(true)} 
+       onError={console.warn}/>
     )
   }
 }
+
 
 const styles = StyleSheet.create({
 
