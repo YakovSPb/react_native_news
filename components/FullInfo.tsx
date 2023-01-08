@@ -1,17 +1,14 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+
 import { gStyle } from "../styles/style";
 
 export default function FullInfo(props: any) {
   return (
     <View style={gStyle.main}>
       {/* @ts-ignore  */}
-      <Image source={{
-          width: "100%",
-          height: 200,
-          uri: props.route.params.img,
-        }}
-      />
+      <Image style={styles.image} source={{uri: props.route.params.img}} />
       <Text style={[gStyle.title, styles.header]}>{props.route.params.name}</Text>
       <Text style={styles.full}>{props.route.params.full}</Text>
     </View>
@@ -29,5 +26,9 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     marginTop: 25
+  },
+  image: {
+    width: "100%",
+    height: 200,
   }
 });
